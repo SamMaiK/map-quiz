@@ -5,7 +5,7 @@ import '../styles/Map.css'
 
 const Map = compose(
     withProps({
-        googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",
+        googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDGuFSRRm2bip9-3k6M2OXJzr4_vaXkrDk&v=3.exp&libraries=geometry,drawing,places",
         loadingElement: <div className="loading-element"/>,
         containerElement: <div className="container-element"/>,
         mapElement: <div className="map-element"/>,
