@@ -1,0 +1,13 @@
+.result-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text-align-center{
+    text-align: center;
+}
+
+.accent {
+    padding: 0 1%;
+    font-weight: bold;
+}

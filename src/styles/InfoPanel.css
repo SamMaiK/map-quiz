@@ -1,0 +1,19 @@
+.info-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-grow: 2;
+}
+
+.cards-panel {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50%;
+}
+
+@media screen and (max-width: 600px) {
+    .cards-panel {
+        flex-direction: column;
+    }
+}
