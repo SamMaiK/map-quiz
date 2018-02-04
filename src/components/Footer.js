@@ -2,11 +2,12 @@ import React from 'react'
 import {Button} from 'semantic-ui-react'
 import '../styles/Footer.css'
 
-const Footer = ({applySelection, disableFooterButton, showResult, nextCity, gameOver}) => {
+const Footer = ({applySelection, disableFooterButton, showResult, nextCity, gameOver, startNewGame}) => {
     if (gameOver) {
         return (
-            <div className="footer">
+            <div className="end-game-footer">
                 <h1>GAME OVER</h1>
+                <Button onClick={startNewGame}>Click here to start new game</Button>
             </div>
         )
     }

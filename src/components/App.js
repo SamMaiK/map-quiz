@@ -6,24 +6,29 @@ import Map from './Map'
 import InfoPanel from './InfoPanel'
 import Footer from './Footer'
 import dataForGame from '../capitalCities.json'
+import StartGameOverlay from './StartGameOverlay'
 
+
+const initialState = {
+    gameStart: true,
+    gameOver: false,
+    showMarker: false,
+    showResult: false,
+    currentCityIndex: 0,
+    correctSelections: 0,
+    kilometersLeft: 1500,
+    resultDistance: 0,
+    markerPosition: {
+        lat: 0,
+        lng: 0
+    }
+};
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.cities = dataForGame.capitalCities;
-        this.state = {
-            showMarker: false,
-            showResult: false,
-            currentCityIndex: 0,
-            correctSelections: 0,
-            kilometersLeft: 1500,
-            resultDistance: 0,
-            markerPosition: {
-                lat: 0,
-                lng: 0
-            }
-        };
+        this.state = initialState;
     }
 
     setMarkerPosition = (lat, lng) => {
@@ -81,8 +86,16 @@ class App extends Component {
         }))
     };
 
+    closeStartOverlay = () => {
+      this.setState({gameStart: false})
+    };
+
+    startNewGame = () => {
+        this.setState(initialState);
+    };
+
     render() {
-        const {setMarkerPosition, cities, applySelection, nextCity} = this;
+        const {setMarkerPosition, cities, applySelection, nextCity, closeStartOverlay, startNewGame} = this;
         const {
             showMarker,
             markerPosition,
@@ -91,7 +104,8 @@ class App extends Component {
             currentCityIndex,
             showResult,
             resultDistance,
-            gameOver
+            gameOver,
+            gameStart
         } = this.state;
         return (
             <div className="App">
@@ -114,6 +128,11 @@ class App extends Component {
                     showResult={showResult}
                     nextCity={nextCity}
                     gameOver={gameOver}
+                    startNewGame={startNewGame}
+                />
+                <StartGameOverlay
+                    gameStart={gameStart}
+                    closeStartOverlay={closeStartOverlay}
                 />
             </div>
         );
