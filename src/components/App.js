@@ -18,6 +18,12 @@ const initialState = {
     correctSelections: 0,
     kilometersLeft: 1500,
     resultDistance: 0,
+    mapZoom: 4,
+    mapCenter: {
+        lat: 48.12,
+        lng: 11.54
+    },
+
     markerPosition: {
         lat: 0,
         lng: 0
@@ -27,6 +33,7 @@ const initialState = {
 class App extends Component {
     constructor(props) {
         super(props);
+        this.map = null;
         this.cities = dataForGame.capitalCities;
         this.state = initialState;
     }
@@ -58,6 +65,8 @@ class App extends Component {
                     lat: parseFloat(city.lat),
                     lng: parseFloat(city.long)
                 },
+                mapCenter: new google.maps.LatLng(city.lat, city.long),
+                mapZoom: 5,
                 gameOver: true
             })
         }
@@ -73,8 +82,10 @@ class App extends Component {
             markerPosition: {
                 lat: parseFloat(city.lat),
                 lng: parseFloat(city.long)
-            }
-        }))
+            },
+            mapCenter: new google.maps.LatLng(city.lat, city.long),
+            mapZoom: 5,
+        }));
     };
 
     nextCity = () => {
@@ -82,20 +93,26 @@ class App extends Component {
             showResult: false,
             showMarker: false,
             currentCityIndex: this.cities.length === prevState.currentCityIndex + 1 ?
-                0 : prevState.currentCityIndex + 1
+                0 : prevState.currentCityIndex + 1,
+            mapCenter: initialState.mapCenter,
+            mapZoom: initialState.mapZoom,
         }))
     };
 
     closeStartOverlay = () => {
-      this.setState({gameStart: false})
+        this.setState({gameStart: false})
     };
 
     startNewGame = () => {
         this.setState(initialState);
     };
 
+    setMap = (map) => {
+        this.map = map;
+    };
+
     render() {
-        const {setMarkerPosition, cities, applySelection, nextCity, closeStartOverlay, startNewGame} = this;
+        const {setMarkerPosition, cities, applySelection, nextCity, closeStartOverlay, startNewGame, setMap} = this;
         const {
             showMarker,
             markerPosition,
@@ -105,7 +122,9 @@ class App extends Component {
             showResult,
             resultDistance,
             gameOver,
-            gameStart
+            gameStart,
+            mapCenter,
+            mapZoom
         } = this.state;
         return (
             <div className="App">
@@ -121,6 +140,9 @@ class App extends Component {
                     markerPosition={markerPosition}
                     setMarkerPosition={setMarkerPosition}
                     showResult={showResult}
+                    onMapMounted={setMap}
+                    center={mapCenter}
+                    zoom={mapZoom}
                 />
                 <Footer
                     applySelection={applySelection}

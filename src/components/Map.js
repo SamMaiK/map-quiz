@@ -13,11 +13,14 @@ const Map = compose(
     }),
     withScriptjs,
     withGoogleMap
-)(({showMarker, setMarkerPosition, markerPosition, showResult}) => {
+)(({showMarker, setMarkerPosition, markerPosition, showResult, onMapMounted, zoom, center}) => {
     return (
         <GoogleMap
-            defaultZoom={4}
-            defaultCenter={{lat: 48.12, lng: 11.54}}
+            ref={onMapMounted}
+            zoom={zoom}
+            center={center}
+            // defaultZoom={4}
+            // defaultCenter={{lat: 48.12, lng: 11.54}}
             options={{
                 streetViewControl: false,
                 fullscreenControl: false,
