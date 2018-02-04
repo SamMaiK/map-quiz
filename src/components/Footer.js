@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {Button} from 'semantic-ui-react'
 import '../styles/Footer.css'
 
@@ -19,6 +20,15 @@ const Footer = ({applySelection, disableFooterButton, showResult, nextCity, game
             }
         </div>
     )
+};
+
+Footer.propTypes = {
+    applySelection: PropTypes.func,
+    disableFooterButton: PropTypes.bool,
+    showResult: PropTypes.bool,
+    nextCity: PropTypes.func,
+    gameOver: PropTypes.bool,
+    startNewGame: PropTypes.func
 };
 
 export default Footer

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {withScriptjs, withGoogleMap, GoogleMap, Marker} from 'react-google-maps'
 import {compose, withProps} from 'recompose'
 import '../styles/Map.css'
@@ -9,7 +10,6 @@ const Map = compose(
         loadingElement: <div className="loading-element"/>,
         containerElement: <div className="container-element"/>,
         mapElement: <div className="map-element"/>,
-
     }),
     withScriptjs,
     withGoogleMap
@@ -19,8 +19,6 @@ const Map = compose(
             ref={onMapMounted}
             zoom={zoom}
             center={center}
-            // defaultZoom={4}
-            // defaultCenter={{lat: 48.12, lng: 11.54}}
             options={{
                 streetViewControl: false,
                 fullscreenControl: false,
@@ -56,6 +54,19 @@ const Map = compose(
         </GoogleMap>
     )
 });
+
+Map.propTypes = {
+    showMarker: PropTypes.bool,
+    setMarkerPosition: PropTypes.func,
+    markerPosition: PropTypes.shape({
+        lat: PropTypes.number,
+        lng: PropTypes.number
+    }),
+    showResult: PropTypes.bool,
+    onMapMounted: PropTypes.func,
+    zoom: PropTypes.number,
+    center: PropTypes.any
+};
 
 export default Map
 

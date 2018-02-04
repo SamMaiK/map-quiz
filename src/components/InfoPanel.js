@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import '../styles/InfoPanel.css'
 import InfoCard from './InfoCard';
 import CurrentCityPanel from './CurrentCityPanel';
@@ -20,6 +21,14 @@ const InfoPanel = ({correctSelections, kilometersLeft, currentCity, showResult, 
             }
         </div>
     )
+};
+
+InfoPanel.propTypes = {
+    correctSelections: PropTypes.number,
+    kilometersLeft: PropTypes.number,
+    currentCity: PropTypes.string,
+    showResult: PropTypes.bool,
+    resultDistance: PropTypes.number
 };
 
 export default InfoPanel

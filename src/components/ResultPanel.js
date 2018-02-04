@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {Message} from 'semantic-ui-react'
 import '../styles/ResultPanel.css'
 
@@ -17,6 +18,12 @@ const ResultPanel = ({children, positive, negative}) => {
             </Message>
         </div>
     )
+};
+
+ResultPanel.propTypes = {
+    children: PropTypes.string,
+    positive: PropTypes.bool,
+    negative: PropTypes.bool,
 };
 
 export default ResultPanel

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {Dimmer, Header, Button} from 'semantic-ui-react'
 import '../styles/StartGameOverlay.css'
 
@@ -25,6 +26,11 @@ const StartGameOverlay = ({gameStart, closeStartOverlay}) => {
             </Header>
         </Dimmer>
     )
+};
+
+StartGameOverlay.propTypes = {
+    closeStartOverlay: PropTypes.func,
+    gameStart: PropTypes.bool,
 };
 
 export default StartGameOverlay

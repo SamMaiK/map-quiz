@@ -23,7 +23,6 @@ const initialState = {
         lat: 48.12,
         lng: 11.54
     },
-
     markerPosition: {
         lat: 0,
         lng: 0
