@@ -30,6 +30,11 @@ const Map = compose(
                         stylers: [{visibility: 'off'}]
                     },
                     {
+                        featureType: 'road',
+                        elementType: 'geometry',
+                        stylers: [{visibility: 'off'}]
+                    },
+                    {
                         featureType: 'all',
                         elementType: 'labels',
                         stylers: [{visibility: 'off'}]

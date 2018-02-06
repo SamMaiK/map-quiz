@@ -5,11 +5,12 @@ import InfoCard from './InfoCard';
 import CurrentCityPanel from './CurrentCityPanel';
 import ResultPanel from './ResultPanel';
 
-const InfoPanel = ({correctSelections, kilometersLeft, currentCity, showResult, resultDistance}) => {
+const InfoPanel = ({correctSelections, kilometersLeft, currentCity, showResult, resultDistance, highScore}) => {
     return (
         <div className="info-panel">
             <div className="cards-panel">
                 <InfoCard>{`${correctSelections} correct selections`}</InfoCard>
+                <InfoCard>{`Highscore: ${highScore}`}</InfoCard>
                 <InfoCard>{`${kilometersLeft} kilometers left`}</InfoCard>
             </div>
             {showResult ?
@@ -28,7 +29,8 @@ InfoPanel.propTypes = {
     kilometersLeft: PropTypes.number,
     currentCity: PropTypes.string,
     showResult: PropTypes.bool,
-    resultDistance: PropTypes.number
+    resultDistance: PropTypes.number,
+    highScore: PropTypes.number
 };
 
 export default InfoPanel

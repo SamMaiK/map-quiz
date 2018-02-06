@@ -26,7 +26,8 @@ const initialState = {
     markerPosition: {
         lat: 0,
         lng: 0
-    }
+    },
+    highScore: parseInt(localStorage.getItem('highscore'), 10) || 0
 };
 
 class App extends Component {
@@ -69,6 +70,12 @@ class App extends Component {
                 gameOver: true
             })
         }
+        if(distance < 50000 && this.state.correctSelections + 1 > this.state.highScore){
+            localStorage.setItem('highscore', this.state.correctSelections + 1);
+            this.setState({
+                highScore: this.state.correctSelections + 1
+            })
+        }
         this.setState((prevState) => ({
             showResult: true,
             resultDistance: distance,
@@ -103,7 +110,7 @@ class App extends Component {
     };
 
     startNewGame = () => {
-        this.setState(initialState);
+        this.setState((prevState) => ({...initialState, highScore: prevState.highScore}));
     };
 
     setMap = (map) => {
@@ -123,7 +130,8 @@ class App extends Component {
             gameOver,
             gameStart,
             mapCenter,
-            mapZoom
+            mapZoom,
+            highScore
         } = this.state;
         return (
             <div className="App">
@@ -133,6 +141,7 @@ class App extends Component {
                     currentCity={cities[currentCityIndex].capitalCity}
                     showResult={showResult}
                     resultDistance={resultDistance}
+                    highScore={highScore}
                 />
                 <Map
                     showMarker={showMarker}
